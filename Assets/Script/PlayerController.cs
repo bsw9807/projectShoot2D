@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private StageData stageData;
     [SerializeField]
-    private KeyCode keyCodeAttack = KeyCode.Space;
+    private KeyCode keyCodeAttack = KeyCode.Z;
+    [SerializeField]
+    private KeyCode keyCodeBomb = KeyCode.X;
     private bool isDie = false;
     private Movement2D movement2D;
     private Weapon weapon;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
         set => score = Mathf.Max(0, value);
         get => score;
     }
+
     private void Awake()
     {
         movement2D = GetComponent<Movement2D>();
@@ -45,6 +48,11 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyUp(keyCodeAttack))
         {
             weapon.StopFiring();
+        }
+
+        if (Input.GetKeyDown(keyCodeBomb))
+        {
+            weapon.StartBomb();
         }
     }
 
