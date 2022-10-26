@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     public void OnDie()
     {
         movement2D.MoveTo(Vector3.zero);
-        animator.SetTrigger("onDie");
+        animator.SetTrigger("OnDie");
         Destroy(GetComponent<CircleCollider2D>());
         isDie = true;
     }
