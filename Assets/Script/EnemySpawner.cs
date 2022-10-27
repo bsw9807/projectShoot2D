@@ -13,21 +13,45 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Transform canvasTransform;
     [SerializeField]
+    private BGMController bgmController;
+    [SerializeField]
+    private GameObject textBossWarning;
+    [SerializeField]
+    private GameObject panelBossHP;
+    [SerializeField]
+    private GameObject boss;
+    [SerializeField]
     private float spawnTime;
+    [SerializeField]
+    private int maxEnemyCount = 100;
 
     private void Awake()
     {
+        textBossWarning.SetActive(false);
+        panelBossHP.SetActive(false);
+        boss.SetActive(false);
+
         StartCoroutine("SpawnEnemy");
     }
 
     private IEnumerator SpawnEnemy()
     {
+        int currentEnemyCount = 0;
+
         while (true)
         {
             float positionX = Random.Range(stageData.LimitMin.x, stageData.LimitMax.x);
             Vector3 position = new Vector3(positionX, stageData.LimitMax.y + 1.0f, 0.0f);
             GameObject enemyClone = Instantiate(enemyPrefab, position, Quaternion.identity);
             SpawnEnemyHPSlider(enemyClone);
+
+            currentEnemyCount++;
+            if (currentEnemyCount == maxEnemyCount)
+            {
+                StartCoroutine("SpawnBoss");
+                break;
+            }
+
             yield return new WaitForSeconds(spawnTime);
         }
     }
@@ -39,5 +63,20 @@ public class EnemySpawner : MonoBehaviour
         sliderClone.transform.localScale = Vector3.one;
         sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform);
         sliderClone.GetComponent<EnemyHPViewer>().Setup(enemy.GetComponent<EnemyHP>());
+    }
+
+    private IEnumerator SpawnBoss()
+    {
+        bgmController.ChangeBGM(BGMType.Boss);
+
+        textBossWarning.SetActive(true);
+
+        yield return new WaitForSeconds(1.0f);
+
+        textBossWarning.SetActive(false);
+        panelBossHP.SetActive(true);
+        boss.SetActive(true);
+
+        boss.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
     }
 }
