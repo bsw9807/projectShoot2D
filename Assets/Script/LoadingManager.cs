@@ -7,43 +7,26 @@ using UnityEngine.SceneManagement;
 
 public class LoadingManager : MonoBehaviour
 {
-    [SerializeField]
-    private Image loadingBar;
-
-    private void Awake()
+    public Slider progressbar;
+    private void Start()
     {
-        loadingBar.fillAmount = 0f;
-        StartCoroutine("LoadAsyncScene");
+        StartCoroutine(LoadScene());
     }
-
-    IEnumerator LoadAsyncScene()
+    IEnumerator LoadScene()
     {
-        yield return YieldInstructionCache.WaitForSeconds(2f);
-        AsyncOperation asyncScene = SceneManager.LoadSceneAsync("");
-        asyncScene.allowSceneActivation = false;
+        yield return null;
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Stage01");
+        operation.allowSceneActivation = false;
 
-        float timeC = 0f;
-
-        while (!asyncScene.isDone)
+        while (!operation.isDone)
         {
             yield return null;
-            timeC += Time.deltaTime;
-
-            if(asyncScene.progress >= 0.9f)
+            progressbar.value = Mathf.MoveTowards(progressbar.value, 1f, Time.deltaTime);
+            if (progressbar.value >= 1f)
             {
-                loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, 1f, timeC);
-                if(loadingBar.fillAmount >= 0.999f)
-                {
-                    asyncScene.allowSceneActivation = true;
-                }
-            }
-            else{
-                loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, asyncScene.progress, timeC);
-                if(loadingBar.fillAmount >= asyncScene.progress)
-                {
-                    timeC = 0f;
-                }
+                operation.allowSceneActivation = true;
             }
         }
+        
     }
 }
