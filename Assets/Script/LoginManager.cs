@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum SAVE_TYPE
 {
@@ -14,6 +15,7 @@ public enum SCENE_NAME
 {
     Stage01,
     Lobby,
+    Loading,
 }
 
 public class LoginManager : MonoBehaviour
@@ -32,5 +34,24 @@ public class LoginManager : MonoBehaviour
         }
         else
             haveUserInfo = true;
+    }
+
+    public void LoginButton()
+    {
+        if (!haveUserInfo)
+        {
+            if (inputField.text.Length > 2)
+            {
+                PlayerPrefs.SetString(SAVE_TYPE.SAVE_Name.ToString(), inputField.text);
+                haveUserInfo = true;
+            }
+            else
+                Debug.Log("입력한 아이디가 짧습니다");
+        }
+        if (haveUserInfo)
+        {
+            PlayerPrefs.SetString(SAVE_TYPE.SAVE_Scene.ToString(), SCENE_NAME.Lobby.ToString());
+            SceneManager.LoadScene(SCENE_NAME.Loading.ToString());
+        }
     }
 }
