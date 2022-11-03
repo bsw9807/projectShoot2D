@@ -144,6 +144,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   bombAudio: {fileID: 8300000, guid: b7f8695cf65a4f24eb37544298821146, type: 3}
+  damage: 100
 --- !u!82 &1407890124345787475
 AudioSource:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ AudioSource:
   m_GameObject: {fileID: 3894714628244457634}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4155546880443131303, guid: 7c037facc0c47864487b56d6c9adf4f6, type: 2}
   m_audioClip: {fileID: 8300000, guid: ba39bf8baf6d13046889b2d64822381a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

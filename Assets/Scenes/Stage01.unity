@@ -703,8 +703,8 @@ MonoBehaviour:
   stageData: {fileID: 11400000, guid: 4d8a886f6f47aca418d9393b71d68f85, type: 2}
   alertLinePrefab: {fileID: 4736245892036958400, guid: 30fed428a52035245b53a844f4c5d930, type: 3}
   meteoritePrefab: {fileID: 528229976587411010, guid: 0f7ca3c8a0f730c4c9360f28fa0f7164, type: 3}
-  minSpawnTime: 1
-  maxSpawnTime: 4
+  minSpawnTime: 2
+  maxSpawnTime: 3
 --- !u!4 &613701306
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,7 +1498,7 @@ AudioSource:
   m_GameObject: {fileID: 1184411359}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4155546880443131303, guid: 7c037facc0c47864487b56d6c9adf4f6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 56703418e3aed4c47a5f6622816b8e41, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -2340,7 +2340,7 @@ AudioSource:
   m_GameObject: {fileID: 1980682291}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5409883283545931103, guid: 7c037facc0c47864487b56d6c9adf4f6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6527913238f28a04abbbc7e46a876de3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2494,7 +2494,7 @@ MonoBehaviour:
   textBossWarning: {fileID: 1798151653}
   panelBossHP: {fileID: 2097325987}
   boss: {fileID: 810465257}
-  spawnTime: 0.35
+  spawnTime: 0.5
   maxEnemyCount: 10
 --- !u!4 &1983203882
 Transform:

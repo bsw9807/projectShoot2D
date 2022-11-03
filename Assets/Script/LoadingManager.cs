@@ -15,7 +15,7 @@ public class LoadingManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return null;
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Stage01");
+        AsyncOperation operation = SceneManager.LoadSceneAsync(PlayerPrefs.GetString(SAVE_TYPE.SAVE_Scene.ToString()));
         operation.allowSceneActivation = false;
 
         while (!operation.isDone)

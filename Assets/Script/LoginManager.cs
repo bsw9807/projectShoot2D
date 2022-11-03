@@ -8,6 +8,8 @@ public enum SAVE_TYPE
 {
     SAVE_Name,
     SAVE_Scene,
+    SAVE_SFX,
+    SAVE_BGM,
 
 }
 
