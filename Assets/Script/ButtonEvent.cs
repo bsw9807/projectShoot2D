@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ButtonEvent : MonoBehaviour
 {
-    public void SceneLoader(string sceneName)
+    public void SceneLoader()
     {
-        SceneManager.LoadScene(sceneName);
+        PlayerPrefs.SetString(SAVE_TYPE.SAVE_Scene.ToString(), SCENE_NAME.Stage01.ToString());
+        SceneManager.LoadScene(SCENE_NAME.Loading.ToString());
+    }
+    public void SceneLoader2()
+    {
+        PlayerPrefs.SetString(SAVE_TYPE.SAVE_Scene.ToString(), SCENE_NAME.Lobby.ToString());
+        SceneManager.LoadScene(SCENE_NAME.Loading.ToString());
     }
 }

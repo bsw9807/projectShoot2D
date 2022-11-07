@@ -8,6 +8,31 @@ using TMPro;
 
 public class LobbyManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        InitLobbyScene();
+    }
+
+    private void InitLobbyScene()
+    {
+        for(int i=0;i< skillButtonList.Count; i++)
+        { 
+            SAVE_TYPE saveType = (SAVE_TYPE)(i + (int)SAVE_TYPE.SAVE_Skill001);
+            if (0 < PlayerPrefs.GetInt(saveType.ToString()))
+            {
+                skillButtonList[i].InitButton(true, 9);
+            }
+            else
+                skillButtonList[i].InitButton(false, 9);
+        }
+
+        SFX_ValueChange(PlayerPrefs.GetFloat(SAVE_TYPE.SAVE_SFX.ToString()));
+        BGM_ValueChange(PlayerPrefs.GetFloat(SAVE_TYPE.SAVE_BGM.ToString()));
+    }
+
+    [SerializeField]
+    private List<SkillButton> skillButtonList;
+
     public enum MenuType
     {
         MenuType_Enchant = 1,
